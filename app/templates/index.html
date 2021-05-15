@@ -2,78 +2,78 @@
 <html lang="en">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Welbex | The TestTask</title>
 </head>
 <body>
 
-<div class="container">
-    <form action="." method="POST">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <select class="form-select" name="column">
-                        <option selected>Выбор колонки</option>
-                        <option value="title">Название</option>
-                        <option value="volume">Количество</option>
-                        <option value="distance">Расстояние</option>
-                    </select>
-
-                </div>
-                <div class="col">
-                    <select class="form-select" name="param">
-                        <option selected>Выбирете параметр</option>
-                        <option value="==">Равно</option>
-                        <option value="ilike">Содержит</option>
-                        <option value=">">Больше</option>
-                        <option value="<">Меньше</option>
-                    </select>
-
-                </div>
-                <div class="col">
-                    <input class="form-control form-control" name="text_input" type="text" placeholder="Введите значение"
-                           aria-label=".form-control-sm example">
-
-                </div>
-                <div class="col">
-                    <button type="submit" class="btn btn-warning">Применить фильтр</button>
+    <div class="container" id='root_div'>
+        <form action="/table" method="GET" id="filter_form">
+            <div class="container pt-4">
+                <div class="row">
+                    <div class="col">
+                        <select class="form-select" name="column">
+                            <option selected>Выбор колонки</option>
+                            <option value="title">Название</option>
+                            <option value="volume">Количество</option>
+                            <option value="distance">Расстояние</option>
+                        </select>
+    
+                    </div>
+                    <div class="col">
+                        <select class="form-select" name="param">
+                            <option selected>Выбирете параметр</option>
+                            <option value="==">Равно</option>
+                            <option value="ilike">Содержит</option>
+                            <option value=">">Больше</option>
+                            <option value="<">Меньше</option>
+                        </select>
+    
+                    </div>
+                    <div class="col">
+                        <input class="form-control form-control" name="text_input" type="text" placeholder="Введите значение"
+                               aria-label=".form-control-sm example">
+    
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-warning" id="btn">Применить фильтр</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
-    <table class="table table-bordered">
-    <thead>
-        <tr>
-            <th scope="col">Дата</th>
-            <th scope="col">Название</th>
-            <th scope="col">Количество</th>
-            <th scope="col">Расстояние</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for item in table.items %}
-        <tr>
-            <th scope="row">{{ item.date }}</th>
-            <td>{{ item.title }}</td>
-            <td>{{ item.volume }}</td>
-            <td>{{ item.distance }}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    {% if table.has_prev %}
-        <a href="{{ url_for('index_page', page=table.prev_num) }}">&lt;&lt; Пред.</a>
-    {% else %}
-        &lt;&lt; Ничего нет
-    {% endif %}
-    {% if table.has_next %}
-        <a href="{{ url_for('index_page', page=table.next_num) }}">След.стр &gt;&gt;</a>
-    {% else %}
-        Все кончилось &gt;&gt;
-    {% endif %}
-</div>
+    <div class="container pt-4" id="table_items">
+        {% include "table.html" %}
+    </div>
 
+<script>
+
+    $(document).ready(function() {
+        $("#btn").click( function() {
+            sendAjaxForm('filter_form');
+            return false;
+        });
+    });
+
+    function sendAjaxForm(filter_form) {
+
+        $.ajax({
+            url: '/table',
+            type: 'GET',
+            dataType: 'HTML',
+            data: $('#' + filter_form).serialize(),
+            cache: false,
+            success: function(html){
+                $("#table_items").html(html);
+            },
+            error: function() {
+                alert('Упс, что случилось О_О');
+            }
+        });
+    }
+
+</script>
 </body>
 </html>
