@@ -1,13 +1,13 @@
 import psycopg2 as ps
-import confg
+from .confg import DB_NAME_0, USER, PASSWD
 
-connect = ps.connect(dbname=confg.DB_NAME,
-                     user=confg.USER,
-                     password=confg.PASSWD,
+connect = ps.connect(dbname=DB_NAME_0,
+                     user=USER,
+                     password=PASSWD,
                      host='localhost', port='5432')
 
 cursor = connect.cursor()
-connect.autocommit = True
+
 
 def make_data_base():
 

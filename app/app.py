@@ -1,6 +1,6 @@
 from flask import Flask, request
 from flask import render_template
-from confg import Configuration
+from .confg import Configuration
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
@@ -9,7 +9,7 @@ app.config.from_object(Configuration)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-from model import SinglePageTable
+from .model import SinglePageTable
 
 
 @app.route('/')
@@ -52,3 +52,7 @@ def tabel_page():
 
     table = SinglePageTable.query.all()
     return render_template('table.html', table=table)
+
+
+if __name__ == '__main__':
+    app.run()

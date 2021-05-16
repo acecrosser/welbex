@@ -5,6 +5,7 @@ path = os.path.abspath('.' + 'env')
 read_dotenv(path)
 
 DB_NAME = str(os.getenv('DBNAME'))
+DB_NAME_0 = str(os.getenv('DBNAME_0'))
 USER = str(os.getenv('USER'))
 PASSWD = str(os.getenv('PASSWD'))
 
