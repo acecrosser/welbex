@@ -3,11 +3,12 @@
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='ajax_filter.js') }}"></script>
     <meta charset="UTF-8">
     <title>Welbex | The TestTask</title>
 </head>
-<body>
 
+<body>
     <div class="container" id='root_div'>
         <form action="/table" method="GET" id="filter_form">
             <div class="container pt-4">
@@ -19,7 +20,6 @@
                             <option value="volume">Количество</option>
                             <option value="distance">Расстояние</option>
                         </select>
-    
                     </div>
                     <div class="col">
                         <select class="form-select" name="param">
@@ -29,12 +29,10 @@
                             <option value=">">Больше</option>
                             <option value="<">Меньше</option>
                         </select>
-    
                     </div>
                     <div class="col">
                         <input class="form-control form-control" name="text_input" type="text" placeholder="Введите значение"
                                aria-label=".form-control-sm example">
-    
                     </div>
                     <div class="col">
                         <button type="submit" class="btn btn-warning" id="btn">Применить фильтр</button>
@@ -43,37 +41,8 @@
             </div>
         </form>
     </div>
-
     <div class="container pt-4" id="table_items">
         {% include "table.html" %}
     </div>
-
-<script>
-
-    $(document).ready(function() {
-        $("#btn").click( function() {
-            sendAjaxForm('filter_form');
-            return false;
-        });
-    });
-
-    function sendAjaxForm(filter_form) {
-
-        $.ajax({
-            url: '/table',
-            type: 'GET',
-            dataType: 'HTML',
-            data: $('#' + filter_form).serialize(),
-            cache: false,
-            success: function(html){
-                $("#table_items").html(html);
-            },
-            error: function() {
-                alert('Упс, что случилось О_О');
-            }
-        });
-    }
-
-</script>
 </body>
 </html>
