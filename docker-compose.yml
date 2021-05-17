@@ -4,10 +4,10 @@ services:
         build: .
         ports:
             - "8000:8000"
-        dependes_on:
+        depends_on:
             - postgres
     postgres:
         image: postgres
-        restart: alway
+        restart: always
         environment: 
             POSTGRES_PASSWORD: postgres 

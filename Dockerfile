@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM python
 ENV DEBIAN_FRONTEND=noninteractive
 LABEL maintainer="Shilke Alex acecrosser@yandex.ru"  
 RUN apt-get update
@@ -8,7 +8,7 @@ COPY app /home/welbex/app
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD .env /home/welbex/app/.env
 ADD requirements.txt /home/welbex/requirements.txt
-RUN python3 -m pip install -r /home/welbex/requirements.txt
-RUN python3 -m pip install gunicorn
+RUN python -m pip install -r /home/welbex/requirements.txt
+RUN python -m pip install gunicorn
 EXPOSE 8000
 CMD ["/usr/bin/supervisord"]
