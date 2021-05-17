@@ -7,7 +7,7 @@ RUN apt-get install -y postgresql-contrib
 RUN apt-get install -y postgresql-client
 RUN mkdir -p /home/welbex/app
 COPY app /home/welbex/app
-ADD welbex.conf /etc/supervisor/conf.d/welbex.conf
+ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD .env /home/welbex/app/.env
 ADD requirements.txt /home/welbex/requirements.txt
 RUN python3 -m pip install -r /home/welbex/requirements.txt
