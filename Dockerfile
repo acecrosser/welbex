@@ -8,7 +8,6 @@ ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD .env /home/welbex/app/.env
 ADD requirements.txt /home/welbex/requirements.txt
 RUN pip install -r /home/welbex/requirements.txt
-RUN pip install gunicorn
 WORKDIR /home/welbex/app
 RUN export FLASK_APP=app
 EXPOSE 8000
