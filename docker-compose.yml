@@ -1,0 +1,13 @@
+version: '2'
+services: 
+    web:
+        build: .
+        ports:
+            - "8000:8000"
+        dependes_on:
+            - postgres
+    postgres:
+        image: postgres
+        restart: alway
+        environment: 
+            POSTGRES_PASSWORD: postgres 

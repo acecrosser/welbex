@@ -4,7 +4,7 @@ from confg import DB_NAME, USER, PASSWD
 connect = ps.connect(dbname=DB_NAME,
                      user=USER,
                      password=PASSWD,
-                     host='localhost', port='5432')
+                     host='postgres', port='5432')
 
 cursor = connect.cursor()
 
