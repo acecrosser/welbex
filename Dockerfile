@@ -1,5 +1,4 @@
 FROM python
-ENV DEBIAN_FRONTEND=noninteractive
 LABEL maintainer="Shilke Alex acecrosser@yandex.ru"  
 RUN apt-get update
 RUN apt-get install -y supervisor

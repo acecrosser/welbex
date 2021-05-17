@@ -1,5 +1,5 @@
 import psycopg2 as ps
-from confg import DB_NAME_0, USER, PASSWD
+from .confg import DB_NAME_0, USER, PASSWD
 
 connect = ps.connect(dbname=DB_NAME_0,
                      user=USER,
