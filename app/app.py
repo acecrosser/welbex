@@ -1,6 +1,6 @@
 from flask import Flask, request
 from flask import render_template
-from .confg import Configuration
+from confg import Configuration
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
