@@ -1,14 +1,15 @@
-FROM debian
+FROM ubuntu:18.04
+ENV DEBIAN_FRONTEND=noninteractive
 LABEL maintainer="Shilke Alex acecrosser@yandex.ru"  
-ADD sources.list /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get install -y python3 python3-pip supervisor postgresql
 RUN apt-get install -y postgresql-contrib
 RUN apt-get install -y postgresql-client
-RUN postgres -D /usr/local/pgsql/data >logfile 2>&1 &
+RUN chmod -R 0700 /var/lib/postgresql/10/main
+RUN pg_ctlcluster 10 main start
 RUN mkdir -p /home/welbex/app
-RUN mkdir -p /home/welbex/env
 COPY app /home/welbex/app
+RUN pg_lsclusters
 ADD welbex.conf /etc/supervisor/conf.d/welbex.conf
 ADD .env /home/welbex/app/.env
 ADD requirements.txt /home/welbex/requirements.txt
