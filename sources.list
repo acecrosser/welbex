@@ -1,14 +1,11 @@
 # buster
  
-deb http://security.debian.org/ buster/updates main
-# Line commented out by installer because it failed to verify:
-deb-src http://security.debian.org/ buster/updates main
+
+deb http://mirror.yandex.ru/debian buster main non-free contrib
+deb-src http://mirror.yandex.ru/debian buster main non-free contrib
  
-deb http://mirror.yandex.ru/debian buster main
-deb-src http://mirror.yandex.ru/debian buster main
- 
-deb http://mirror.yandex.ru/debian buster-updates main
-deb-src http://mirror.yandex.ru/debian buster-updates main
+deb http://mirror.yandex.ru/debian buster-updates main non-free contrib
+deb-src http://mirror.yandex.ru/debian buster-updates main non-free contrib
  
 deb http://mirror.yandex.ru/debian/ buster-proposed-updates main non-free contrib
 deb-src http://mirror.yandex.ru/debian/ buster-proposed-updates main non-free contrib
