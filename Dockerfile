@@ -1,5 +1,6 @@
 FROM debian
 LABEL maintainer="Shilke Alex acecrosser@yandex.ru"  
+ADD sources.list /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get install -y python3 python3-pip supervisor postgresql
 RUN mkdir -p /home/welbex/app
