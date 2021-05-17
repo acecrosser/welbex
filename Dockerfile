@@ -12,5 +12,6 @@ ADD .env /home/welbex/app/.env
 ADD requirements.txt /home/welbex/requirements.txt
 RUN python3 -m pip install -r /home/welbex/requirements.txt
 RUN python3 -m pip install gunicorn
+RUN echo "root:postgres" | chpasswd
 EXPOSE 8000
 CMD ["/usr/bin/supervisord"]
