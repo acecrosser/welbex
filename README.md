@@ -4,10 +4,13 @@
 
 Для запуска на локальном ПК воспользуйтесь инструкцией ниже (Docker-Compose):
 1. Клонируйте репозиторий на локальную машина: 
+
 `git clone https://github.com/acecrosser/welbex.git`
 2. Перейдите в папку скаченного проекта:
+
 `cd welbex`
 3. Запустите команду docker-compose:
+
 `docker-compose up -d`
 4. По итогу выполнения сборки должны увидеть следующие сообщение:
 ```
@@ -15,6 +18,7 @@ Starting welbex_postgres_1...done
 Starting welbex_web_1...dene
 ```
 5. Далее перейдите в браузере по адресу:
+
 `http://0.0.0.0:8000`
 
 
