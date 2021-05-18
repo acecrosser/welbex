@@ -1,6 +1,7 @@
 FROM postgres
 RUN mkdir /home/db/
-COPY app/db_welbex.dump /home/db/db_welbex.dump
+COPY db_welbex /home/db/db_welbex
+COPY db_welbex_arh /home/db/db_welbex_arh
 ADD app/init.sql /docker-entrypoint-initdb.d/
 WORKDIR /home/db
-CMD ["pg_restore", "-U postgres", "-h localhost", "-w", "db_welbex", "db_welbex.dump" ]
+CMD ["pg_restore", "-U postgres", "-h localhost", "-w", "-d", "db_welbex", "db_welbex" ]
