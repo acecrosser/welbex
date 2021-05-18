@@ -7,8 +7,9 @@ services:
         depends_on:
             - postgres
     postgres:
-        build: .
-        dockerfile: Dockerfile-postgres
+        build:
+            context: .
+            dockerfile: Dockerfile-postgres
         environment: 
             POSTGRES_DB: db_welbex
             POSTGRES_PASSWORD: postgres 
