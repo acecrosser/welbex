@@ -10,4 +10,5 @@ services:
         image: postgres
         restart: always
         environment: 
+            POSTGRES_DB: db_welbex
             POSTGRES_PASSWORD: postgres 

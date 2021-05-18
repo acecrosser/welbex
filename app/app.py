@@ -55,4 +55,6 @@ def tabel_page():
 
 
 if __name__ == '__main__':
+    import time
+    time.sleep(10)
     app.run(host='0.0.0.0', port='8000')
